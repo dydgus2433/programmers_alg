@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class ongali {
     public int solution(String[] babbling) {
+        
         String[] validSounds = {"aya", "ye", "woo", "ma"};
         int wordCount = 0;
         for (String word : babbling) {
