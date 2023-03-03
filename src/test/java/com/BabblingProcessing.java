@@ -1,4 +1,4 @@
-package com.example.test.demo;
+package com;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-public class ongali {
+public class BabblingProcessing {
     public int solution(String[] babbling) {
         
         String[] validSounds = {"aya", "ye", "woo", "ma"};

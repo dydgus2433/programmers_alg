@@ -1,4 +1,4 @@
-package com.example.test.demo;
+package com;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-public class Test20230225_test1 {
+public class MissingNumberSumFinder {
 
     public int solution(int[] arr) {
        int sum = 0;

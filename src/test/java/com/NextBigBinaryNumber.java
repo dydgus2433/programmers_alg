@@ -1,10 +1,10 @@
-package com.example.test.demo;
+package com;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class Test20230225 {
+public class NextBigBinaryNumber {
 
     public int solution(int n) {
         int a = n;
