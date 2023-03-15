@@ -7,29 +7,25 @@ import org.junit.jupiter.api.Test;
 public class PrimeSumFinder {
 
     public int solution(int[] arr) {
-        int sosuCount = 0;
-        for(int i = 0 ; i < arr.length-2; i++){
-            for(int j  = i +1 ; j < arr.length-1; j++){
-                for(int k = j+1; k < arr.length; k++){
-                    if(sosu(i+j+k)){
-                        sosuCount++;
+        int primeCount = 0;
+        for (int i = 0; i < arr.length - 2; i++) {
+            for (int j = i + 1; j < arr.length - 1; j++) {
+                for (int k = j + 1; k < arr.length; k++) {
+                    if (isPrime(arr[i] + arr[j] + arr[k])) {
+                        primeCount++;
                     }
                 }
             }
         }
-
-        return sosuCount;
+        return primeCount;
     }
-
-    public boolean sosu(int a){
-        int count = 0;
-        for(int i = a-1; i > 2; i--){
-            if(a%i == 0){
-                count ++;
-                break;
-            }
+    
+    public boolean isPrime(int num) {
+        if (num <= 1) return false;
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0) return false;
         }
-        return count == 0;
+        return true;
     }
 
     @Test

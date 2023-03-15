@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 public class KakaoEmoticonSalesAnalyzer {
-    
     public int[] solution(int[][] users, int[] emoticons) {
         int joinNum = 0;
         int sum = 0;
