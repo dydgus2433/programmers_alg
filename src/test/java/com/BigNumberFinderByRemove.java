@@ -17,13 +17,16 @@ public class BigNumberFinderByRemove {
 
 
     private String getBigNumberByRemove(String answer) {
-        int min = Integer.MAX_VALUE;
-        for(int i = 0 ; i < answer.length(); i++){
-            min = Math.min(min, Integer.parseInt(answer.substring(i, i+1)));
+        String max =  "";
+        String number = "0123456789";
+        for(int i = 0 ; i < number.length(); i++){
+            String indexFinder =number.substring(i, i+1);
+            if(answer.indexOf(indexFinder) > -1){
+                String ex = answer.replaceFirst(indexFinder, "") ;
+                max = max.compareTo(ex) > 0 ? max :  answer.replaceFirst(indexFinder, "") ;
+            }
         }
-       
-
-        return  answer.replaceFirst(min+"", "");
+        return  max;
     }
 
     @Test
