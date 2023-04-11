@@ -2,32 +2,41 @@ package com;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Stack;
+
 import org.junit.jupiter.api.Test;
 
 public class BigNumberFinderByRemove {
-    public String solution(String number, int k) {
-        String answer = number;
-
-        for(int i =0 ; i < k; i++){
-            answer = getBigNumberByRemove(answer);
-        }
-
-        return answer;
-    }
-
-
-    private String getBigNumberByRemove(String answer) {
-        String max =  "";
-        String number = "0123456789";
-        for(int i = 0 ; i < number.length(); i++){
-            String indexFinder =number.substring(i, i+1);
-            if(answer.indexOf(indexFinder) > -1){
-                String ex = answer.replaceFirst(indexFinder, "") ;
-                max = max.compareTo(ex) > 0 ? max :  answer.replaceFirst(indexFinder, "") ;
+    
+    public String solution(String answer, int k) {
+        Stack<Character> stack = new Stack<>();
+        int n = answer.length();
+        
+        for (int i = 0; i < n; i++) {
+            char digit = answer.charAt(i);
+            while (!stack.isEmpty() && k > 0 && stack.peek() < digit) {
+                stack.pop();
+                k--;
             }
+            stack.push(digit);
         }
-        return  max;
+        
+        while (k > 0 && !stack.isEmpty()) {
+            stack.pop();
+            k--;
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        while (!stack.isEmpty()) {
+            sb.append(stack.pop());
+        }
+        sb.reverse();
+        
+        return sb.toString();
     }
+    
+
+
 
     @Test
     public void test(){
