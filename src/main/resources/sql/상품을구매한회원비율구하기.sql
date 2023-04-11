@@ -82,3 +82,42 @@ where B.YEAR||B.month = TO_CHAR(SALES_DATE,'YYYYMM')
  group by b.year , b.month
 ) a , tot_count b
 order by a.year , a.month
+
+
+tot_count as (
+    SELECT count(distinct user_id) as cnt from  USER_INFO  A 
+where  TO_CHAR(JOINED,'YYYY') = '2021' )
+
+select a.year, a.month  , a.count as PUCHASED_USERS, round(a.count/b.cnt,1)
+as PUCHASED_RATIO
+from 
+(SELECT extract(YEAR FROM SALES_DATE) year, extract(MONTH FROM SALES_DATE) month, count(distinct a.user_id) count from ONLINE_SALE  A , USER_INFO C
+where extract(YEAR FROM SALES_DATE)||extract(MONTH FROM SALES_DATE) = TO_CHAR(SALES_DATE,'YYYYMM')
+ and a.user_id = c.user_id
+ group by  extract(YEAR FROM SALES_DATE) , extract(MONTH FROM SALES_DATE)
+) a , tot_count b
+order by a.year , a.month
+
+SELECT extract(YEAR FROM SALES_DATE) year, extract(MONTH FROM SALES_DATE) month, count(distinct a.user_id) count from ONLINE_SALE  A , USER_INFO C
+where extract(YEAR FROM SALES_DATE)||extract(MONTH FROM SALES_DATE) = TO_CHAR(SALES_DATE,'YYYYMM')
+ and a.user_id = c.user_id
+ group by  extract(YEAR FROM SALES_DATE) , extract(MONTH FROM SALES_DATE)
+
+
+ 
+SELECT extract(YEAR FROM SALES_DATE) year, LPAD(extract(MONTH FROM SALES_DATE),2,0) month, count(distinct a.user_id) count from ONLINE_SALE  A , USER_INFO C
+ group by  extract(YEAR FROM SALES_DATE) , extract(MONTH FROM SALES_DATE)
+--------------------------
+ with tot_count as (
+    SELECT count(distinct user_id) as cnt from  USER_INFO  A 
+where  TO_CHAR(JOINED,'YYYY') = '2021' )
+
+select a.year, a.month  , a.count as PUCHASED_USERS, round(a.count/b.cnt,1) as PUCHASED_RATIO
+from 
+
+(SELECT extract(YEAR FROM SALES_DATE) year, extract(MONTH FROM SALES_DATE) month, count(distinct a.user_id) count from ONLINE_SALE  A , USER_INFO C
+where a.user_id = c.user_id
+ AND EXTRACT(YEAR FROM JOINED) = 2021
+ group by  extract(YEAR FROM SALES_DATE) , extract(MONTH FROM SALES_DATE)
+) a , tot_count b
+order by a.year , a.month
